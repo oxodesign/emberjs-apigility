@@ -1,0 +1,40 @@
+.done{
+    text-decoration: line-through;
+}
+
+/*********************************************
+ * TITLE
+ *********************************************/
+.title-container{
+    line-height: 1;
+    font-family: 'Share Tech', sans-serif;
+    top: 20px;
+    position: absolute;
+    margin: 0 auto;
+    text-align: right;
+}
+.title-container .title{
+    padding: 20px;
+    background: #e56351;
+    color: #fff;
+    font-size: 30px;
+    width: 300px;
+    z-index: 9999;
+}
+
+.title-container .title span.small{font-size: 20px !important;}
+.title-container .title a{color: #fff; text-decoration: none;}
+
+.btn-danger{
+    background: #e56351;
+}
+
+.btn-danger:hover{
+    background: #d54537;
+}
+
+.btn-danger-round{
+    border-radius: 50%;
+    font-size: 10px;
+    line-height: 1.2em;
+}

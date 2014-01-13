@@ -1,41 +1,52 @@
-<?php echo $this->doctype(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Apigility & Ember.js TodoApi</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
 
-<html lang="en" ng-app="zf-api-first-admin">
-    <head>
-        <meta charset="utf-8">
-<?php
-    echo $this->headTitle('ZF API First Application');
-    echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0');
-    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('/img/favicon.ico')))
-        ->appendStylesheet($this->basePath('/zf-apigility/css/bootstrap.min.css'))
-        ->appendStylesheet($this->basePath('/zf-apigility/css/main.css'));
-    echo $this->headScript()
-        ->prependFile($this->basePath('/zf-apigility/js/bootstrap.min.js'))
-        ->prependFile($this->basePath('/zf-apigility/js/jquery.min.js'));
-?>
-
-    </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top za1-nav">
-            <div class="container">
-                <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('/img/zfapi_logo.png') ?>"></a>
-                <ul class="nav navbar-nav">
-                    <?php if (class_exists('ZF\ApiFirstAdmin\Module', false)): ?>
-                        <li class="active"><a href="<?php echo $this->basePath('/admin') ?>">Setup</a></li>
-                    <?php endif; ?>
-                </ul>
-            </div>
+    <div class="title-container">
+        <div class="title">
+            <span class="small">Demo</span><br />
+            <a href="http://lab.empirio.no/emberjs-say-hello-to-apigility.html">Ember.js say hello to Apigility.</a><br />
+            <span class="small"><a href="http://lab.empirio.no/">Flamur Mavraj</a> (<a href="https://twitter.com/oxodesign">@oxodesign</a>)</span>
         </div>
+    </div>
 
-
-
+    <script type="text/x-handlebars" data-template-name="application">
         <div class="container">
-            <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
-            </footer>
-        </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
-    </body>
+            <h1>Ember.js & Apigility Todo app</h1>
+
+            {{outlet}}
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="todos">
+        <form {{action "add" on="submit"}}>
+        {{view Ember.TextField valueBinding="todoName" placeholder="Add a new task" class="form-control"}}<br />
+        </form>
+
+        <br /><br />
+
+        <ul class="list-unstyled">
+            {{#each}}
+            <li {{bind-attr class="isCompleted:text-muted isCompleted:done"}}>
+                <button {{action delete this}} class="btn btn-danger btn-danger-round btn-xs">x</button>
+                {{view Ember.Checkbox checkedBinding="isCompleted"}} {{name}}
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script src="javascript/vendor/jquery-1.10.2.js"></script>
+    <script src="javascript/vendor/handlebars-v1.3.0.js"></script>
+    <script src="javascript/vendor/ember.js"></script>
+    <script src="javascript/vendor/ember-data.js"></script>
+    <script src="javascript/vendor/bootstrap.js"></script>
+    <script src="javascript/app.js"></script>
+
+</body>
 </html>
